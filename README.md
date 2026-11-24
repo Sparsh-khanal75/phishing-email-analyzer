@@ -86,3 +86,7 @@ tests/                      unit tests and sample-based regression tests
 - Planned: enrich IOCs with VirusTotal / URLhaus reputation, check domain age through WHOIS, and parse `.msg` (Outlook) files.
 
 > All sample emails are synthetic. They use reserved `.example` domains and RFC 5737 IP addresses.
+
+## Author
+
+**Sparsh Khanal** · [GitHub](https://github.com/Sparsh-khanal75) · [LinkedIn](https://www.linkedin.com/in/Sparsh-khanal75)
