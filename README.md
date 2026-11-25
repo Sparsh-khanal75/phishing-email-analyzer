@@ -2,7 +2,7 @@
 
 A command-line tool that triages suspicious `.eml` files the way a SOC analyst does. It checks the sender's authentication, the headers, the links, the attachments and the wording, then gives an **explainable verdict** and a **defanged IOC list** ready for blocking. Every finding is tagged with MITRE ATT&CK where one applies.
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python) ![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen) ![Tests](https://img.shields.io/badge/tests-6%20passing-success) ![MITRE](https://img.shields.io/badge/MITRE-T1566-red)
+![CI](https://github.com/Sparsh-khanal75/phishing-email-analyzer/actions/workflows/ci.yml/badge.svg) ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python) ![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen) ![Tests](https://img.shields.io/badge/tests-6%20passing-success) ![MITRE](https://img.shields.io/badge/MITRE-T1566-red)
 
 ## Why
 
