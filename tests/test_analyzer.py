@@ -58,5 +58,23 @@ class SampleTests(unittest.TestCase):
         self.assertEqual(r.findings, [])
 
 
+
+class DashboardTests(unittest.TestCase):
+    def test_html_dashboard_covers_all_emails(self):
+        import tempfile
+
+        from phishalyzer.dashboard import write_dashboard
+
+        reports = [analyze(p) for p in sorted(SAMPLES.glob("*.eml"))]
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "report.html"
+            write_dashboard(reports, str(out))
+            page = out.read_text(encoding="utf-8")
+        self.assertIn("Phishing triage report", page)
+        self.assertIn("credential_phish.eml", page)
+        self.assertIn("MALICIOUS", page)
+        self.assertNotIn("<script src", page)
+
+
 if __name__ == "__main__":
     unittest.main()
