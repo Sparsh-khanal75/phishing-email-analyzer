@@ -21,6 +21,16 @@ Phishing is the most common way into an organisation, and "user reported a suspi
 
 Scoring: critical 40, high 25, medium 12, low 5 (capped at 100). **≥ 60 = MALICIOUS, ≥ 25 = SUSPICIOUS**, otherwise LIKELY CLEAN.
 
+## Screenshots
+
+**Terminal:** triage of the bundled credential-phishing sample.
+
+![phishalyzer terminal output](docs/screenshots/terminal.png)
+
+**HTML report (`--html triage.html`):** all three samples in one self-contained dashboard, with a risk score per email, findings by category and a findings table you can filter, mapped to MITRE ATT&CK.
+
+![phishalyzer HTML dashboard](docs/screenshots/html-report.png)
+
 ## Demo
 
 **1. Credential phishing:** a fake "Microsoft 365" sign-in alert
@@ -64,6 +74,7 @@ This is the most important lesson in the project. **Email authentication only pr
 python analyze.py samples/credential_phish.eml
 python analyze.py reported/*.eml --json triage.json        # batch + JSON for a SIEM/SOAR
 python analyze.py mail.eml --protect yourcompany.com       # also catch look-alikes of your own domain
+python analyze.py reported/*.eml --html triage.html        # self-contained HTML dashboard
 python -m unittest discover -s tests
 ```
 
