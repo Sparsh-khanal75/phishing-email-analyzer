@@ -6,6 +6,7 @@ Usage:
   python analyze.py samples/credential_phish.eml
   python analyze.py suspicious/*.eml --json report.json
   python analyze.py mail.eml --protect corp.example        # add your own domain to look-alike checks
+  python analyze.py samples/*.eml --html report.html       # self-contained HTML dashboard
 """
 from __future__ import annotations
 
@@ -58,6 +59,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Analyse .eml files for phishing indicators")
     ap.add_argument("emails", nargs="+")
     ap.add_argument("--json", help="write full reports as JSON")
+    ap.add_argument("--html", help="write a self-contained HTML dashboard report")
     ap.add_argument("--protect", action="append", default=[], help="extra domain to protect from look-alikes")
     ap.add_argument("--no-color", action="store_true")
     args = ap.parse_args(argv)
@@ -70,6 +72,11 @@ def main(argv=None) -> int:
         with open(args.json, "w") as fh:
             json.dump([{**asdict(r), "score": r.score, "verdict": r.verdict} for r in reports], fh, indent=2)
         print(f"JSON written to {args.json}")
+    if args.html:
+        from phishalyzer.dashboard import write_dashboard
+
+        write_dashboard(reports, args.html)
+        print(f"HTML report written to {args.html}")
     return 2 if any(r.verdict == "MALICIOUS" for r in reports) else 0
 
 
